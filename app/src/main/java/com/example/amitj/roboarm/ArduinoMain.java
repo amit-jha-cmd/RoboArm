@@ -21,24 +21,18 @@ import android.widget.Toast;
 
 public class ArduinoMain extends Activity {
     int i = 2;
-    //Declare buttons & editText
     Button functionTwo, functionOne;
 
-    //private EditText editText;
-
-    //Memeber Fields
     private BluetoothAdapter btAdapter = null;
     private BluetoothSocket btSocket = null;
     private OutputStream outStream = null;
 
-    // UUID service - This is the type of Bluetooth device that the BT module is
-    // It is very likely yours will be the same, if not google UUID for your manufacturer
+
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     // MAC-address of Bluetooth module
     public String newAddress = null;
 
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +40,6 @@ public class ArduinoMain extends Activity {
 
 //        addKeyListener();
 
-        //Initialising buttons in the view
-        //mDetect = (Button) findViewById(R.id.mDetect)
         functionTwo = (Button) findViewById(R.id.functionTwo);
         functionOne = (Button) findViewById(R.id.reset);
 
@@ -55,11 +47,6 @@ public class ArduinoMain extends Activity {
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         checkBTState();
 
-        /**************************************************************************************************************************8
-         *  Buttons are set up with onclick listeners so when pressed a method is called
-         *  In this case send data is called with a value and a toast is made
-         *  to give visual feedback of the selection made
-         */
 
         functionOne.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -89,7 +76,7 @@ public class ArduinoMain extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        // connection methods are best here in case program goes into the background etc
+
 
         //Get MAC address from DeviceListActivity
         Intent intent = getIntent();
@@ -122,16 +109,12 @@ public class ArduinoMain extends Activity {
         } catch (IOException e) {
             Toast.makeText(getBaseContext(), "ERROR - Could not create bluetooth outstream", Toast.LENGTH_SHORT).show();
         }
-        //When activity is resumed, attempt to send a piece of junk data ('x') so that it will fail if not connected
-        // i.e don't wait for a user to press button to recognise connection failure
         sendData("X");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        //Pausing can be the end of an app if the device kills it or the user doesn't open it again
-        //close all connections so resources are not wasted
 
         //Close BT socket to device
         try     {
@@ -170,7 +153,6 @@ public class ArduinoMain extends Activity {
             //attempt to place data on the outstream to the BT device
             outStream.write(msgBuffer);
         } catch (IOException e) {
-            //if the sending fails this is most likely because device is no longer there
             Toast.makeText(getBaseContext(), "ERROR - Device not found", Toast.LENGTH_SHORT).show();
             finish();
         }

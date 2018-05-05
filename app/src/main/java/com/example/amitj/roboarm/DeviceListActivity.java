@@ -34,7 +34,7 @@ public class DeviceListActivity extends Activity {
         setContentView(R.layout.activity_device_list);
 
         textConnectionStatus = (TextView) findViewById(R.id.connecting);
-        textConnectionStatus.setTextSize(40);
+        textConnectionStatus.setTextSize(35);
 
         // Initialize array adapter for paired devices
         mPairedDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.device_name);
@@ -97,7 +97,7 @@ public class DeviceListActivity extends Activity {
     {
         public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3)
         {
-            textConnectionStatus.setText("Connecting...");
+            textConnectionStatus.setText("Trying to talk...");
             // Get the device MAC address, which is the last 17 chars in the View
             String info = ((TextView) v).getText().toString();
             String address = info.substring(info.length() - 17);
