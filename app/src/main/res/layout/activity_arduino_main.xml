@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ArduinoMain">
+    tools:context=".ArduinoMain"
+    tools:layout_editor_absoluteY="81dp">
 
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/relativeLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
@@ -28,68 +29,70 @@
             android:imeOptions="actionSend"
             android:singleLine="true" />-->
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/watermark" />
-
         <Button
             android:id="@+id/functionTwo"
             style="@android:style/Widget.Button.Small"
             android:layout_width="166dp"
             android:layout_height="68dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="85dp"
+            android:layout_marginBottom="64dp"
             android:shadowColor="@color/colorPrimaryDark"
-            android:text="HOLD"
+            android:text="@string/hold"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
         <Button
             android:id="@+id/reset"
             style="@android:style/Widget.Button.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:layout_marginStart="11dp"
             android:layout_marginTop="11dp"
             android:shadowColor="@color/colorPrimaryDark"
-            android:text="RESET"
-            android:textStyle="bold" />
+            android:text="@string/reset"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <SeekBar
-            android:id="@+id/seekBar_luminosite"
-            android:layout_width="300dp"
+            android:id="@+id/seekBar1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="101dp"
-           />
+            android:layout_marginTop="91dp"
+            android:indeterminate="false"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:thumb="@drawable/thumbler_small"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
         <SeekBar
             android:id="@+id/seekBar6"
             style="@style/Base.TextAppearance.AppCompat.Display2"
-            android:layout_width="190dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_marginBottom="8dp"
             android:backgroundTint="?attr/colorError"
-            android:rotation="270" />
+            android:thumb="@drawable/thumbler_small"
+            app:layout_constraintBottom_toTopOf="@+id/functionTwo"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <SeekBar
             android:id="@+id/seekBar7"
             style="@style/Base.TextAppearance.AppCompat.Display2"
-            android:layout_width="190dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:backgroundTint="?attr/colorError"
-            android:rotation="270" />
+            android:thumb="@drawable/thumbler_small"
+            app:layout_constraintBottom_toTopOf="@+id/seekBar6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar1" />
 
-    </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
