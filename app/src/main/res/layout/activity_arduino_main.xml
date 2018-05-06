@@ -36,7 +36,7 @@
             android:layout_height="68dp"
             android:layout_marginBottom="64dp"
             android:shadowColor="@color/colorPrimaryDark"
-            android:text="@string/hold"
+            android:text="@string/engage"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

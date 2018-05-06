@@ -3,4 +3,5 @@
     <string name="reset">RESET</string>
     <string name="hold">HOLD</string>
     <string name="todo">TODO</string>
+    <string name="engage">Engage</string>
 </resources>

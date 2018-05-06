@@ -62,13 +62,14 @@ public class ArduinoMain extends Activity {
                 if(i % 2 == 0){
                     sendData("2");
                     i = 3;
+                    functionTwo.setText("Disengage");
                 }
                 else if(i % 2 != 0){
                     sendData("1");
                     i = 2;
+                    functionTwo.setText("Engage");
                 }
-
-                Toast.makeText(getBaseContext(), "Down", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), "Down", Toast.LENGTH_SHORT).show();
             }
         });
     }
