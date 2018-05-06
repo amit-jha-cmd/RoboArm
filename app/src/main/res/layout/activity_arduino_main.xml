@@ -28,6 +28,14 @@
             android:imeOptions="actionSend"
             android:singleLine="true" />-->
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/watermark" />
+
         <Button
             android:id="@+id/functionTwo"
             style="@android:style/Widget.Button.Small"
