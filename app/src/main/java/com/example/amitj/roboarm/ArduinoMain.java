@@ -43,7 +43,7 @@ public class ArduinoMain extends Activity {
         functionTwo = (Button) findViewById(R.id.functionTwo);
         functionOne = (Button) findViewById(R.id.reset);
 
-        //getting the bluetooth adapter value and calling checkBTstate function
+
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         checkBTState();
 
@@ -78,32 +78,31 @@ public class ArduinoMain extends Activity {
         super.onResume();
 
 
-        //Get MAC address from DeviceListActivity
+
         Intent intent = getIntent();
         newAddress = intent.getStringExtra(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
 
-        // Set up a pointer to the remote device using its address.
+
         BluetoothDevice device = btAdapter.getRemoteDevice(newAddress);
 
-        //Attempt to create a bluetooth socket for comms
+
         try {
             btSocket = device.createRfcommSocketToServiceRecord(MY_UUID);
         } catch (IOException e1) {
             Toast.makeText(getBaseContext(), "ERROR - Could not create Bluetooth socket", Toast.LENGTH_SHORT).show();
         }
 
-        // Establish the connection.
         try {
             btSocket.connect();
         } catch (IOException e) {
             try {
-                btSocket.close();        //If IO exception occurs attempt to close socket
+                btSocket.close();
             } catch (IOException e2) {
                 Toast.makeText(getBaseContext(), "ERROR - Could not close Bluetooth socket", Toast.LENGTH_SHORT).show();
             }
         }
 
-        // Create a data stream so we can talk to the device
+        // Create a data stream so we can connect to the device
         try {
             outStream = btSocket.getOutputStream();
         } catch (IOException e) {
@@ -123,13 +122,13 @@ public class ArduinoMain extends Activity {
             Toast.makeText(getBaseContext(), "ERROR - Failed to close Bluetooth socket", Toast.LENGTH_SHORT).show();
         }
     }
-    //takes the UUID and creates a comms socket
+
     private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException {
 
         return  device.createRfcommSocketToServiceRecord(MY_UUID);
     }
 
-    //same as in device list activity
+
     private void checkBTState() {
         // Check device has Bluetooth and that it is turned on
         if(btAdapter==null) {
@@ -138,7 +137,6 @@ public class ArduinoMain extends Activity {
         } else {
             if (btAdapter.isEnabled()) {
             } else {
-                //Prompt user to turn on Bluetooth
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 startActivityForResult(enableBtIntent, 1);
             }
@@ -150,7 +148,6 @@ public class ArduinoMain extends Activity {
         byte[] msgBuffer = message.getBytes();
 
         try {
-            //attempt to place data on the outstream to the BT device
             outStream.write(msgBuffer);
         } catch (IOException e) {
             Toast.makeText(getBaseContext(), "ERROR - Device not found", Toast.LENGTH_SHORT).show();

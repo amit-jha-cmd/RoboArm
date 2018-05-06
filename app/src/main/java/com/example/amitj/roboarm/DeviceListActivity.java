@@ -16,14 +16,14 @@ import android.widget.Toast;
 
 public class DeviceListActivity extends Activity {
 
-    // textview for connection status
+
     TextView textConnectionStatus;
     ListView pairedListView;
 
-    //An EXTRA to take the device MAC to the next activity
+
     public static String EXTRA_DEVICE_ADDRESS;
 
-    // Member fields
+
     private BluetoothAdapter mBtAdapter;
     private ArrayAdapter<String> mPairedDevicesArrayAdapter;
 
@@ -74,12 +74,11 @@ public class DeviceListActivity extends Activity {
         }
     }
 
-    //method to check if the device has Bluetooth and if it is on.
-    //Prompts the user to turn it on if it is off
+
     private void checkBTState()
     {
         // Check device has Bluetooth and that it is turned on
-        mBtAdapter=BluetoothAdapter.getDefaultAdapter(); // CHECK THIS OUT THAT IT WORKS!!!
+        mBtAdapter=BluetoothAdapter.getDefaultAdapter();
         if(mBtAdapter==null) {
             Toast.makeText(getBaseContext(), "Device does not support Bluetooth", Toast.LENGTH_SHORT).show();
             finish();
@@ -92,7 +91,7 @@ public class DeviceListActivity extends Activity {
         }
     }
 
-    // Set up on-click listener for the listview
+
     private OnItemClickListener mDeviceClickListener = new OnItemClickListener()
     {
         public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3)
@@ -102,7 +101,6 @@ public class DeviceListActivity extends Activity {
             String info = ((TextView) v).getText().toString();
             String address = info.substring(info.length() - 17);
 
-            // Make an intent to start next activity while taking an extra which is the MAC address.
             Intent i = new Intent(DeviceListActivity.this, ArduinoMain.class);
             i.putExtra(EXTRA_DEVICE_ADDRESS, address);
             startActivity(i);
