@@ -6,16 +6,18 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class DeviceListActivity extends Activity {
-
+    boolean pressed = false;
 
     TextView textConnectionStatus;
     ListView pairedListView;
@@ -33,6 +35,8 @@ public class DeviceListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_list);
 
+
+
         textConnectionStatus = (TextView) findViewById(R.id.connecting);
         textConnectionStatus.setTextSize(35);
 
@@ -43,7 +47,6 @@ public class DeviceListActivity extends Activity {
         pairedListView = (ListView) findViewById(R.id.paired_devices);
         pairedListView.setOnItemClickListener(mDeviceClickListener);
         pairedListView.setAdapter(mPairedDevicesArrayAdapter);
-
     }
 
     @Override
@@ -62,6 +65,7 @@ public class DeviceListActivity extends Activity {
 
         // Get a set of currently paired devices and append to pairedDevices list
         Set<BluetoothDevice> pairedDevices = mBtAdapter.getBondedDevices();
+
 
         // Add previously paired devices to the array
         if (pairedDevices.size() > 0) {
@@ -96,11 +100,10 @@ public class DeviceListActivity extends Activity {
     {
         public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3)
         {
-            textConnectionStatus.setText("Trying to talk...");
+            textConnectionStatus.setText("Connecting....");
             // Get the device MAC address, which is the last 17 chars in the View
             String info = ((TextView) v).getText().toString();
             String address = info.substring(info.length() - 17);
-
             Intent i = new Intent(DeviceListActivity.this, ArduinoMain.class);
             i.putExtra(EXTRA_DEVICE_ADDRESS, address);
             startActivity(i);

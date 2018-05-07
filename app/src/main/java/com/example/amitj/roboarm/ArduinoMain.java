@@ -11,17 +11,22 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 public class ArduinoMain extends Activity {
     int i = 2;
     Button functionTwo, functionOne;
+
+
 
     private BluetoothAdapter btAdapter = null;
     private BluetoothSocket btSocket = null;
@@ -39,6 +44,71 @@ public class ArduinoMain extends Activity {
         setContentView(R.layout.activity_arduino_main);
 
 //        addKeyListener();
+        SeekBar baseBar = (SeekBar)findViewById(R.id.seekBar1);
+        SeekBar onbaseBar = (SeekBar)findViewById(R.id.seekBar6);
+        SeekBar armBar = (SeekBar)findViewById(R.id.seekBar7);
+
+
+        baseBar.setMax(120);
+        onbaseBar.setMax(120);
+        armBar.setMax(120);
+
+
+        baseBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                sendData("b" + Integer.toString(progress));
+                Log.i("baseBar", Integer.toString(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        onbaseBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                sendData("ob" + Integer.toString(progress));
+                Log.i("onbaseBar", Integer.toString(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        armBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                sendData("a" + Integer.toString(progress));
+                Log.i("armBar", Integer.toString(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
 
         functionTwo = (Button) findViewById(R.id.functionTwo);
         functionOne = (Button) findViewById(R.id.reset);
