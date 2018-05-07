@@ -130,12 +130,12 @@ public class ArduinoMain extends Activity {
         functionTwo.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 if(i % 2 == 0){
-                    sendData("2");
+                    sendData("d");
                     i = 3;
                     functionTwo.setText("Disengage");
                 }
                 else if(i % 2 != 0){
-                    sendData("1");
+                    sendData("e");
                     i = 2;
                     functionTwo.setText("Engage");
                 }
@@ -179,7 +179,7 @@ public class ArduinoMain extends Activity {
         } catch (IOException e) {
             Toast.makeText(getBaseContext(), "ERROR - Could not create bluetooth outstream", Toast.LENGTH_SHORT).show();
         }
-        sendData("X");
+        sendData("x");
     }
 
     @Override
