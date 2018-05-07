@@ -75,8 +75,8 @@ public class ArduinoMain extends Activity {
         onbaseBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                sendData(Integer.toString(progress) + "o");
-                Log.i("onbaseBar", Integer.toString(progress));
+                sendData(Integer.toString(progress) + "a");
+                Log.i("armBar", Integer.toString(progress));
             }
 
             @Override
@@ -93,8 +93,8 @@ public class ArduinoMain extends Activity {
         armBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                sendData(Integer.toString(progress) + "a");
-                Log.i("armBar", Integer.toString(progress));
+                sendData(Integer.toString(progress) + "o");
+                Log.i("onbaseBar", Integer.toString(progress));
             }
 
             @Override
